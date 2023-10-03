@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: sample-spring-boot
+  namespace: openshift-gitops
+spec:
+  generators:
+    - clusterDecisionResource:
+        configMapRef: acm-placement # (1)
+        labelSelector:
+          matchLabels:
+            cluster.open-cluster-management.io/placement: demo-gitops-placement
+        requeueAfterSeconds: 180
+  template:
+    metadata:
+      name: todolist-{{name}} # (2)
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/rht-labs/todolist.git
+        targetRevision: master
+        path: chart
+      destination:
+        namespace: demo
+        server: "{{server}}" # (3)
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: false
+        syncOptions:
+          - CreateNamespace=true # (4)

@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+ name: cluster-provisioner
+ namespace: openshift-gitops
+spec:
+ generators:
+   - git:
+       repoURL: https://github.com/springdo/acm-gitops.git
+       revision: main
+       files:
+         - path: "clusters/**/values.yaml"
+ template:
+   metadata:
+     name: "cluster-create-{{cluster.env}}-{{cluster.name}}"
+     labels:
+       environment: "{{cluster.env}}"
+   spec:
+     project: default
+     source:
+       repoURL: https://github.com/springdo/acm-gitops.git
+       targetRevision: main
+       path: sno
+       helm:
+         valueFiles:
+           - /clusters/{{cluster.name}}/values.yaml
+     destination:
+       server: 'https://kubernetes.default.svc'
+       namespace:
+     syncPolicy:
+       syncOptions:
+         - preserveResourcesOnDeletion=true

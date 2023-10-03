@@ -1,0 +1,27 @@
+# Default values for clusters.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+cluster: 
+  baseDomain: sandbox988.opentlc.com
+  name: biscuits
+  namespace: all-clusters
+  region: eu-central-1
+  env: develop
+
+clusterSet:
+  enabled: true
+  name: demo
+
+sshPubKey: >
+  ecdsa-sha2-nistp521
+  AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABgNwhHbouGgQ+72lCbPXm9DotzGPJFqqFsLYKnXqq7ZK4S0BR2ny7AaORF9UBLMJp1wV5yTHvvMU8qSG015nhIlQEFVU47dtWlhYvGEa9kWWOvbsMCGw0wqJvhpug+tWQhgUfbQjEUfibJRSfJ5D8/4YdVXK5hkoLhix/GibBS9YKK2Q==
+  donal@dspring1-mac
+
+sealedSecrets: true
+
+secrets:
+  aws_access_key_id: 'changeme'
+  aws_secret_access_key: 'changeme'
+  pullSecret: 'changeme'
+  sshPrivateKey: 'changeme'

@@ -1,0 +1,14 @@
+---
+apiVersion: cluster.open-cluster-management.io/v1
+kind: ManagedCluster
+metadata:
+  name: {{ .Values.cluster.name }}
+  labels:
+    name: {{ .Values.cluster.name }}
+    cloud: Amazon
+    region: {{ .Values.cluster.region }}
+    vendor: OpenShift
+    cluster.open-cluster-management.io/clusterset: {{ .Values.clusterSet.name }}
+    env: {{ .Values.cluster.env }}
+spec:
+  hubAcceptsClient: true
