@@ -46,3 +46,4 @@ oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:opens
 
 oc apply -f SealedSecretsApp.yaml
 ```
+![Alt text](secrets-syncd.png)
