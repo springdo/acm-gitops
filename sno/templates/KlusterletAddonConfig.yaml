@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Values.cluster.namespace }}
 spec:
   clusterName: {{ .Values.cluster.name }}
-  clusternamespace: {{ .Values.cluster.namespace }}
+  clusterNamespace: {{ .Values.cluster.namespace }}
   clusterLabels:
     cloud: Amazon
     vendor: OpenShift
