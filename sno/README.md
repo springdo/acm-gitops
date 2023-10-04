@@ -41,5 +41,8 @@ export NAMESPACE=all-clusters; kubeseal < /tmp/all.yaml > sealedsecrets/$NAMESPA
 
 7. Generate your Application resource in ArgoCD to sync the secrets to teh cluster 
 ```bash
-oc apply -f sealedsecrets/Application.yaml
+# dirty hack - should define proper roles / resps for the ArgoCD service account
+oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
+
+oc apply -f SealedSecretsApp.yaml
 ```
