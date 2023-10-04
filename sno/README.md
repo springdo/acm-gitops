@@ -25,12 +25,12 @@ secrets:
 4. Generate Secret files from these values and given `CLUSTER_NAME` and store in tmp for now:
 ```bash
 export CLUSTER_NAME=blerg
-helm template -f secrets.yaml --set sealedSecrets=false --set cluster.name=$CLUSTER_NAME -s templates/secrets/all.yaml sno > /tmp/all.yaml
+helm template -f secrets.yaml --set sealedSecrets=false --set cluster.name=$CLUSTER_NAME -s templates/secrets/all.yaml sno > /tmp/$CLUSTER_NAME-all.yaml
 ```
 
 5. Seal the secrets for your new CLUSTER_NAME.
 ```bash
-kubeseal < /tmp/all.yaml > sealedsecrets/$CLUSTER_NAME-sealed-secrets.yaml \
+kubeseal < /tmp/$CLUSTER_NAME-all.yaml > sealedsecrets/$CLUSTER_NAME-sealed-secrets.yaml \
     -n $CLUSTER_NAME \
     --controller-namespace labs-ci-cd \
     --controller-name sealed-secrets \
