@@ -17,6 +17,10 @@ oc label managedcluster $CLUSTER_NAME cluster.open-cluster-management.io/cluster
 # eg
 oc label managedcluster local-cluster cluster.open-cluster-management.io/clusterset=demo --overwrite=true
 oc label managedcluster ds-sno cluster.open-cluster-management.io/clusterset=demo --overwrite=true
+
+# additional labels
+oc label managedcluster local-cluster env=dev --overwrite=true
+oc label managedcluster ds-sno env=prod --overwrite=true
 ```
 
 3. We need to bind managed clusters to the target namespace where Argo CD is deployed. Create this:

@@ -24,7 +24,7 @@ secrets:
 
 4. Generate Secret files from these values and store in tmp for now:
 ```bash
-helm template -f secrets.yaml --set sealedSecrets=false -s sno/templates/secrets/all.yaml sno > /tmp/all.yaml
+helm template -f secrets.yaml --set sealedSecrets=false -s templates/secrets/all.yaml sno > /tmp/all.yaml
 ```
 
 5. Seal the secrets for your new clusters NAMESPACE. In my workflow im using one ns for the secrets which are shared across all hive cluster deployments. Hive is designed to be multi tenant so this is just a simple work around to only have to do secrets once for N clusters. `NAMESPACE` here should match the one in your `clusters.namespace` property in `sno/values.yaml`
@@ -32,7 +32,7 @@ helm template -f secrets.yaml --set sealedSecrets=false -s sno/templates/secrets
 export NAMESPACE=all-clusters; kubeseal < /tmp/all.yaml > sealedsecrets/$NAMESPACE-sealed-secrets.yaml \
     -n $NAMESPACE \
     --controller-namespace labs-ci-cd \
-    --controller-name my-sealed-secrets \
+    --controller-name sealed-secrets \
     -o yaml
 ```
 
