@@ -13,10 +13,7 @@ clusterSet:
   enabled: true
   name: demo
 
-sshPubKey: >
-  ecdsa-sha2-nistp521
-  AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBABgNwhHbouGgQ+72lCbPXm9DotzGPJFqqFsLYKnXqq7ZK4S0BR2ny7AaORF9UBLMJp1wV5yTHvvMU8qSG015nhIlQEFVU47dtWlhYvGEa9kWWOvbsMCGw0wqJvhpug+tWQhgUfbQjEUfibJRSfJ5D8/4YdVXK5hkoLhix/GibBS9YKK2Q==
-  donal@dspring1-mac
+sshPubKey: 'ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAFxyok2ct+e86QZ4citEc126CT+eXrOxwiAXrSQcyegCLZdi3Ms7ahvvMlZ5VCXnvfEnyWDAEuF+W8sWe+K7C4I7wC3ex+TnSvcLOx2lZAzBdZUUZdkccLPY1UJB67EFBdn3X3V5u2OBU9J/ceBD66tgeVlaqUXDgEqYQG77U2hMmUPCg== donal@dspring1-mac'
 
 sealedSecrets: true
 
