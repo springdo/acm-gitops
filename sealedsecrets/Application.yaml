@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sealed-secrets
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: labs-ci-cd
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: sealedsecrets
+    repoURL: https://github.com/springdo/acm-gitops.git
+    targetRevision: HEAD
+  # cannot do this cuz of chicken and egg situation i guess?  
+  # sources:
+  # - repoURL: 'https://bitnami-labs.github.io/sealed-secrets'
+  #   chart: sealed-secrets
+  #   targetRevision: 2.13.0
+  #   helm:
+  #     valueFiles:
+  #     - $values/sealedsecrets/values.yaml
+  # - repoURL: 'https://github.com/springdo/acm-gitops.git'
+  #   targetRevision: main
+  #   ref: values
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
