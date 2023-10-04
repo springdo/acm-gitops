@@ -3,7 +3,7 @@ apiVersion: hive.openshift.io/v1
 kind: MachinePool
 metadata:
   name: {{ .Values.cluster.name }}-worker
-  namespace: {{ .Values.cluster.namespace }}
+  namespace: {{ .Values.cluster.name }}
 spec:
   name: worker
   clusterDeploymentRef:

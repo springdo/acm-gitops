@@ -3,7 +3,7 @@ apiVersion: hive.openshift.io/v1
 kind: ClusterDeployment
 metadata:
   name: {{ .Values.cluster.name }}
-  namespace: {{ .Values.cluster.namespace }}
+  namespace: {{ .Values.cluster.name }}
   labels:
     cloud: AWS
     region: {{ .Values.cluster.region }}
@@ -18,14 +18,14 @@ spec:
   platform:
     aws:
       credentialsSecretRef:
-        name: {{ .Values.cluster.namespace }}-aws-creds
+        name: {{ .Values.cluster.name }}-aws-creds
       region: {{ .Values.cluster.region }}
   provisioning:
     installConfigSecretRef:
       name: {{ .Values.cluster.name }}-install-config
     sshPrivateKeySecretRef:
-      name: {{ .Values.cluster.namespace }}-ssh-private-key
+      name: {{ .Values.cluster.name }}-ssh-private-key
     imageSetRef:
       name: img4.13.13-multi-appsub
   pullSecretRef:
-    name: {{ .Values.cluster.namespace }}-pull-secret
+    name: {{ .Values.cluster.name }}-pull-secret

@@ -5,7 +5,6 @@
 cluster: 
   baseDomain: sandbox988.opentlc.com
   name: biscuits
-  namespace: all-clusters
   region: eu-central-1
   env: develop
 
