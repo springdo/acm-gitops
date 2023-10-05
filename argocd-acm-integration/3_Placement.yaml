@@ -14,4 +14,5 @@ spec:
               operator: In
               values:
                 - dev
+                - test
                 - prod
