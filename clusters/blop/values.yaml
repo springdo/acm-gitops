@@ -1,4 +1,4 @@
-# cluster: 
-#   baseDomain: sandbox215.opentlc.com
-#   name: blop
-#   env: prod
+cluster:
+  baseDomain: sandbox1071.opentlc.com
+  name: blop
+  env: prod
