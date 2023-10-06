@@ -1,3 +1,4 @@
+{{ if not .Values.sealedSecrets }}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -6,3 +7,4 @@ metadata:
     cluster.open-cluster-management.io/managedCluster: {{ .Values.cluster.name }}
     kubernetes.io/metadata.name: {{ .Values.cluster.name }}
   name: {{ .Values.cluster.name }}
+{{ end }}
