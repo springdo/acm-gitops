@@ -28,13 +28,15 @@ export CLUSTER_NAME=blerg
 helm template -f secrets.yaml --set sealedSecrets=false --set cluster.name=$CLUSTER_NAME -s templates/secrets/all.yaml sno > /tmp/$CLUSTER_NAME-all.yaml
 ```
 
-5. Seal the secrets for your new CLUSTER_NAME.
+5. Seal the secrets for your new CLUSTER_NAME and create an NS for them to live cluster side
 ```bash
 kubeseal < /tmp/$CLUSTER_NAME-all.yaml > sealedsecrets/$CLUSTER_NAME-sealed-secrets.yaml \
     -n $CLUSTER_NAME \
     --controller-namespace labs-ci-cd \
     --controller-name sealed-secrets \
     -o yaml
+
+oc create namespace $CLUSTER_NAME --dry-run=client -o yaml > sealedsecrets/$CLUSTER_NAME-ns.yaml
 ```
 
 6. Commit the encrypted values to git. ENSURE you don not check in your AWS creds by accident (like i did first time)
