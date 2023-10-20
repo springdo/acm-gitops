@@ -39,10 +39,10 @@ kubeseal < /tmp/$CLUSTER_NAME-all.yaml > sealedsecrets/$CLUSTER_NAME-sealed-secr
 oc create namespace $CLUSTER_NAME --dry-run=client -o yaml > sealedsecrets/$CLUSTER_NAME-ns.yaml
 ```
 
-6. Commit the encrypted values to git. ENSURE you don not check in your AWS creds by accident (like i did first time)
+6. Commit the encrypted values and new ns to git. ENSURE you don not check in your AWS creds by accident (like i did first time)
 `git add sealedsecrets` && `git commit ...`
 
-7. Generate your Application resource in ArgoCD to sync the secrets to teh cluster 
+7. Generate your Application resource in ArgoCD to sync the secrets to the cluster 
 ```bash
 # dirty hack - should define proper roles / resps for the ArgoCD service account
 oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller
@@ -50,3 +50,8 @@ oc adm policy add-cluster-role-to-user cluster-admin system:serviceaccount:opens
 oc apply -f SealedSecretsApp.yaml
 ```
 ![Alt text](secrets-syncd.png)
+
+8. Create the `ApplicationSet` to watch for new clusters arriving to the `clusters` folder and update the variables accordingly. In particular take note of the `baseDomain` and ensure it matches the ones created for the given AWS creds
+`oc apply -f ClusterProvisionerAppSet.yaml`
+
+9. In ArgoCD - hit sync to create the clusters. For full e2e automation , this could be set to auto sync but can have some mild issues when cleaning resources up from teh ACM side... you should see the clusters appear in the UI on ACM too.
