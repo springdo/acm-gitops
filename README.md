@@ -1,5 +1,7 @@
 ## ACM / GitOps Demo
 
+![acm-gitops-picture](./acm-gitops-picture.png)
+
 Order of play:
 1. Provision ACM cluster (v2.8.x in my tests)
     * Create the `AWS Credential` in the UI on acm for now supplying all the things like keys etc 
@@ -8,7 +10,7 @@ Order of play:
 oc extract secrets/openshift-gitops-cluster --keys=admin.password -n openshift-gitops --to=-
 ```
 
-_optional_
+_optional or if doing things manually_
 3. Spin up new instance using ACM (hive) to test things out 
     * Set the workerpool nodes to 0 and the master replicas to 1 for Single Node OpenShift
     * Wait 45 mins 🥱
