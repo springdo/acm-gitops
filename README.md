@@ -8,7 +8,8 @@ Order of play:
 oc extract secrets/openshift-gitops-cluster --keys=admin.password -n openshift-gitops --to=-
 ```
 
-3. Spin up new instance using ACM (hive)
+_optional_
+3. Spin up new instance using ACM (hive) to test things out 
     * Set the workerpool nodes to 0 and the master replicas to 1 for Single Node OpenShift
     * Wait 45 mins 🥱
 

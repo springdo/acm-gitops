@@ -1,4 +1,4 @@
 cluster:
-  baseDomain: sandbox450.opentlc.com
+  baseDomain: sandbox.opentlc.com
   name: blah
   env: dev

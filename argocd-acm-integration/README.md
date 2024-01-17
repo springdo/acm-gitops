@@ -9,7 +9,9 @@ mostly [nabbed from here](https://piotrminkowski.com/2022/10/24/gitops-with-adva
 ## Deploying an app to a managed cluster set in ACM / ArgoCD
 
 1. Create a ManagedClusterSet:
-oc apply -f `ManagedClusterSet.yaml`
+```bash
+oc apply -f 1_ManagedClusterSet.yaml
+```
 
 2. Add exising clusters to the set by providing the label:
 ```bash
