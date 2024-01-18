@@ -1,0 +1,4 @@
+cluster:
+  baseDomain: sandbox857.opentlc.com
+  name: blip
+  env: prod
